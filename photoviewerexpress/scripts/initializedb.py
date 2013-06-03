@@ -11,8 +11,10 @@ from pyramid.paster import (
 
 from ..models import (
     DBSession,
-    MyModel,
     Base,
+    Groups,
+    Emails,
+    Users,
     )
 
 
@@ -32,6 +34,43 @@ def main(argv=sys.argv):
     engine = engine_from_config(settings, 'sqlalchemy.')
     DBSession.configure(bind=engine)
     Base.metadata.create_all(engine)
+
     with transaction.manager:
-        model = MyModel(name='one', value=1)
-        DBSession.add(model)
+        group_editor = Groups(name="editor")
+        group_viewer = Groups(name="viewer")
+        DBSession.add(group_editor)
+        DBSession.add(group_viewer)
+
+        email_1 = Emails(email="debonzi@gmail.com")
+        DBSession.add(email_1)
+        DBSession.flush()
+
+        user_1 = Users(login='debonzi',
+                       firstname='Daniel Henrique',
+                       lastname='Debonzi',
+                       password='debonzi123',
+                       )
+        user_1.groups.append(group_editor)
+        user_1.emails.append(email_1)
+        DBSession.add(user_1)
+
+        email_2 = Emails(email="daniel@debonzi.net")
+        DBSession.add(email_2)
+        DBSession.flush()
+        user_2 = Users(login='daniel',
+                       firstname='Daniel Henrique',
+                       lastname='Debonzi',
+                       password='debonzi123',
+                       )
+
+        user_2.groups.append(group_viewer)
+        user_2.emails.append(email_2)
+        DBSession.add(user_2)
+        DBSession.flush()
+        
+        # Exemplo de uso
+        # emails = user_2.emails # retorna uma lista de Emails
+        # print emails
+        # for e in emails:
+        #     u = e.users #backref
+        #     print u.lastname
