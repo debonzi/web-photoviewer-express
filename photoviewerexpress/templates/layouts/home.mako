@@ -9,6 +9,7 @@
 
     <link href="${request.static_url('photoviewerexpress:static/css/bootstrap.min.css')}" rel="stylesheet">
     <link href="${request.static_url('photoviewerexpress:static/css/bootstrap-responsive.min.css')}" rel="stylesheet">
+    <link href="${request.static_url('photoviewerexpress:static/css/lightbox.css')}" rel="stylesheet">
     <style type="text/css">
       .container {
       width: 90%;
@@ -41,6 +42,9 @@
 
     <script src="${request.static_url('photoviewerexpress:static/js/jquery-1.10.0.min.js')}"></script>
     <script src="${request.static_url('photoviewerexpress:static/js/bootstrap.min.js')}"></script>
+    <script src="${request.static_url('photoviewerexpress:static/js/jquery-ui-1.8.18.custom.min.js')}"></script>
+    <script src="${request.static_url('photoviewerexpress:static/js/jquery.smooth-scroll.min.js')}"></script>    
+    <script src="${request.static_url('photoviewerexpress:static/js/lightbox.js')}"></script>    
   </body>
 </html>
 

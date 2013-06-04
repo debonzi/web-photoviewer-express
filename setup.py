@@ -17,6 +17,7 @@ requires = [
     'pyramid_layout',
     'Babel',
     'lingua',
+    'PIL',
    ]
 
 setup(name='PhotoViewerExpress',

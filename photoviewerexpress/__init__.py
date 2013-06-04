@@ -53,5 +53,7 @@ def main(global_config, **settings):
     config.add_route('home', '/')
     config.add_route('photos_base', '/photos')
     config.add_route('photos', '/photos/*directory')
+    config.add_route('show', '/show/*imgpath')
+    config.add_route('showthumb', '/showthumb/*imgpath')
     config.scan()
     return config.make_wsgi_app()
