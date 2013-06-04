@@ -5,7 +5,7 @@ def add_renderer_globals(event):
     event['_'] = request.translate
     event['localizer'] = request.localizer
 
-tsf = TranslationStringFactory('collabPortal')
+tsf = TranslationStringFactory('PhotoViewerExpress')
 
 def add_localizer(event):
     request = event.request

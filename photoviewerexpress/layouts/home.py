@@ -11,7 +11,7 @@ class AppLayout(object):
 
     @property
     def project_title(self):
-        return 'CollabPortal!'
+        return 'Photo Viewer Express'
 
     def add_heading(self, name, *args, **kw):
         self.headings.append((name, args, kw))
