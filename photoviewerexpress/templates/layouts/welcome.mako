@@ -7,8 +7,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link href="${request.static_url('collabportal:static/css/bootstrap.min.css')}" rel="stylesheet">
-    <link href="${request.static_url('collabportal:static/css/bootstrap-responsive.min.css')}" rel="stylesheet">
+    <link href="${request.static_url('photoviewerexpress:static/css/bootstrap.min.css')}" rel="stylesheet">
+    <link href="${request.static_url('photoviewerexpress:static/css/bootstrap-responsive.min.css')}" rel="stylesheet">
     <style type="text/css">
       body {
       padding-top: 20px;
@@ -53,7 +53,7 @@
       </footer>
     </div>
 
-    <script src="${request.static_url('collabportal:static/js/jquery-1.10.0.min.js')}"></script>
-    <script src="${request.static_url('collabportal:static/js/bootstrap.min.js')}"></script>
+    <script src="${request.static_url('photoviewerexpress:static/js/jquery-1.10.0.min.js')}"></script>
+    <script src="${request.static_url('photoviewerexpress:static/js/bootstrap.min.js')}"></script>
   </body>
 </html>
