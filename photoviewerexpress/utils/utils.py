@@ -12,7 +12,7 @@ def get_image_parms(path):
     return img.save, pic_format
 
 def get_thumb_parms(path):
-    size = 300, 300
+    size = 200, 200
     img = Image.open(path)
     img.thumbnail(size, Image.ANTIALIAS)
     return img.save, img.format.lower()

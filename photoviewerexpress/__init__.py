@@ -51,9 +51,15 @@ def main(global_config, **settings):
 
     ## URL Mapping
     config.add_route('home', '/')
+    config.add_route('welcome', '/welcome')
     config.add_route('photos_base', '/photos')
     config.add_route('photos', '/photos/*directory')
     config.add_route('show', '/show/*imgpath')
     config.add_route('showthumb', '/showthumb/*imgpath')
+
+    config.add_route('login', '/login')
+    config.add_route('logout', '/logout')
+    config.add_route('register', '/register')
+
     config.scan()
     return config.make_wsgi_app()

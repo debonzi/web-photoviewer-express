@@ -19,7 +19,7 @@ from ..utils.utils import (
     )
 
 # Find a better place for this
-PHOTOS_PATH = "/home/debonzi/personal/dummydirs"
+PHOTOS_PATH = "/home/debonzi/Pictures"
 
 @view_config(route_name='photos_base')
 def photosbase_view(request):
@@ -29,6 +29,8 @@ def photosbase_view(request):
 @view_config(route_name='photos',
              renderer='photoviewerexpress:templates/photo.mako')
 def photos_view(request):
+    if not request.user:
+        return HTTPFound(request.route_url('welcome'))
     directory = request.matchdict['directory']
     def files_url(name, url, thumb=""):
         item = dict(

@@ -10,4 +10,4 @@ class WelcomeLayout(object):
 
     @property
     def project_title(self):
-        return 'Beer Labs Bar!!'
+        return 'Photo Viewer Express'

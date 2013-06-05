@@ -13,25 +13,27 @@
     <style type="text/css">
       .container {
       width: 90%;
-      }
+      padding-top: 20px;
+      padding-bottom: 20px;
+  }
     </style>
   </head>
 
   <body>
-    <!-- ${panel('navbar')} -->
+    ${panel('navbar')}
     <div class="container">
       <div class="row-fluid">
 	<div class="span12">
 	  <div class="row-fluid">
-	    <div class="span2">
-	      <div class="hero-unit">Left Panel</div>
-	    </div>
-	    <div class="span8">
+	    <!-- <div class="span2"> -->
+	    <!--   <div class="hero-unit">Left Panel</div> -->
+	    <!-- </div> -->
+	    <div class="span12">
 	      ${next.body()}
 	    </div>
-	    <div class="span2">
-	      <div class="hero-unit">Right Panel</div>
-	    </div>
+	    <!-- <div class="span2"> -->
+	    <!--   <div class="hero-unit">Right Panel</div> -->
+	    <!-- </div> -->
 	  </div>
 	</div>
       </div>

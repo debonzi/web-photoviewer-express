@@ -12,7 +12,7 @@
     <style type="text/css">
       body {
       padding-top: 20px;
-      padding-bottom: 60px;
+      padding-bottom: 20px;
       }
     </style>
   </head>
@@ -33,17 +33,13 @@
       <div class="row">
 	<div class="span8">
 	  <div class="hero-unit">
-	    <h3>${_(u"Welcome to Beer Labs Bar!!")}</h3>
+	    <h3>${_(u"Welcome Photo Viewer Express!!")}</h3>
 	    <p>
-	      Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
-	      tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum 
-	      massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. 
-	      Donec sed odio dui.
+	      Beta version!
 	    </p>
 	  </div>
 	</div>
 	<div class="span4 pull-right">
-	  <div class="hero-unit">${panel('register')}</div>
 	</div>
       </div>
       <hr>
