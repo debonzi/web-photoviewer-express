@@ -59,6 +59,8 @@ def photos_view(request):
 
 @view_config(route_name='show')
 def show_image_view(request):
+    if not request.user:
+        return HTTPFound(request.route_url('welcome'))
     img_path = ""
     for i in request.matchdict['imgpath']:
         img_path = os.path.join(img_path, i)
@@ -71,6 +73,8 @@ def show_image_view(request):
 
 @view_config(route_name='showthumb')
 def show_thumb_view(request):
+    if not request.user:
+        return HTTPFound(request.route_url('welcome'))
     img_path = ""
     for i in request.matchdict['imgpath']:
         img_path = os.path.join(img_path, i)
