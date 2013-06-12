@@ -32,13 +32,8 @@
   % endif
 
   <div class="span3">
-    <a href="${p['url']}" rel="lightbox"><img src="${p['thumb']}" alt="${p['name']}" class="img-polaroid"></a>
+    <a href="${p['url']}" rel="photos"><img src="${p['thumb']}" alt="${p['name']}" class="img-polaroid"></a>
   </div>
   <% row = row + 1 %>
   % endfor
 </div>
-
-<script src="${request.static_url('photoviewerexpress:static/js/jquery-1.7.2.min.js')}"></script>
-<script src="${request.static_url('photoviewerexpress:static/js/jquery-ui-1.8.18.custom.min.js')}"></script>
-<script src="${request.static_url('photoviewerexpress:static/js/jquery.smooth-scroll.min.js')}"></script>    
-<script src="${request.static_url('photoviewerexpress:static/js/lightbox.js')}"></script>    
