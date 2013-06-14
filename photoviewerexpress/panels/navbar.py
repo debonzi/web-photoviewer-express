@@ -33,6 +33,6 @@ def navbar(context, request):
     return {
         'logouturl': logouturl,
         'homeurl': homeurl,
-        'nav': nav,
+        'nav': nav[1:], #Hide private or public directories.
         'user_dropdown': user_dropdown
         }

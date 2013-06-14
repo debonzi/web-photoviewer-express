@@ -14,6 +14,7 @@ from ..models import (
 
 from ..utils.utils import (
     scan_dir,
+    scan_root,
     get_image_parms,
     get_thumb_parms
     )
@@ -22,16 +23,24 @@ from ..utils.utils import (
 PHOTOS_PATH = "/home/debonzi/Pictures"
 
 @view_config(route_name='photos_base')
+@view_config(route_name='private_root')
+@view_config(route_name='public_root')
 def photosbase_view(request):
     return HTTPFound(location = request.route_url('photos', directory=""))
 
 
 @view_config(route_name='photos',
              renderer='photoviewerexpress:templates/photo.mako')
+@view_config(route_name='photos_public',
+             renderer='photoviewerexpress:templates/photo.mako')
+@view_config(route_name='photos_private',
+             renderer='photoviewerexpress:templates/photo.mako')
 def photos_view(request):
     if not request.user:
         return HTTPFound(request.route_url('welcome'))
+
     directory = request.matchdict['directory']
+        
     def files_url(name, url, thumb=""):
         item = dict(
             name=name,
@@ -46,9 +55,14 @@ def photos_view(request):
     for d in directory:
         path = os.path.join(path, d)
 
-    dirs, photos = scan_dir(os.path.join(PHOTOS_PATH, path))
-    [dirs_urls.append(files_url(d, request.route_url('photos', directory=os.path.join(path,d)))) for d in dirs]
-    [photos_urls.append(files_url(f,
+    __scan = scan_dir
+    if not os.path.basename(path):
+        __scan = scan_root
+
+    dirs, photos = __scan(PHOTOS_PATH, path, include_private=True)
+    [dirs_urls.append(files_url(os.path.basename(d), 
+                                request.route_url('photos', directory=os.path.join(path,d)))) for d in dirs]
+    [photos_urls.append(files_url(os.path.basename(f),
                                   request.route_url('show', imgpath=os.path.join(path,f)),
                                   request.route_url('showthumb', imgpath=os.path.join(path,f)))) for f in photos]
 

@@ -36,10 +36,10 @@ def main(argv=sys.argv):
     Base.metadata.create_all(engine)
 
     with transaction.manager:
-        group_editor = Groups(name="editor")
-        group_viewer = Groups(name="viewer")
-        DBSession.add(group_editor)
-        DBSession.add(group_viewer)
+        group_private = Groups(name="private")
+        group_admin = Groups(name="admin")
+        DBSession.add(group_private)
+        DBSession.add(group_admin)
 
         email_1 = Emails(email="debonzi@gmail.com")
         DBSession.add(email_1)
@@ -50,7 +50,7 @@ def main(argv=sys.argv):
                        lastname='Debonzi',
                        password='debonzi123',
                        )
-        user_1.groups.append(group_editor)
+        user_1.groups.append(group_admin)
         user_1.emails.append(email_1)
         DBSession.add(user_1)
 
@@ -63,9 +63,22 @@ def main(argv=sys.argv):
                        password='debonzi123',
                        )
 
-        user_2.groups.append(group_viewer)
+        user_2.groups.append(group_private)
         user_2.emails.append(email_2)
         DBSession.add(user_2)
+        DBSession.flush()
+
+        email_3 = Emails(email="guest@debonzi.net")
+        DBSession.add(email_3)
+        DBSession.flush()
+        user_3 = Users(login='guest',
+                       firstname='Photo Viewer',
+                       lastname='Guest',
+                       password='guest',
+                       )
+
+        user_3.emails.append(email_3)
+        DBSession.add(user_3)
         DBSession.flush()
         
         # Exemplo de uso

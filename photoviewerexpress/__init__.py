@@ -53,7 +53,11 @@ def main(global_config, **settings):
     config.add_route('home', '/')
     config.add_route('welcome', '/welcome')
     config.add_route('photos_base', '/photos')
+    config.add_route('private_root', '/photos/private')
+    config.add_route('public_root', '/photos/public')
     config.add_route('photos', '/photos/*directory')
+    config.add_route('photos_private', '/photos/private/*directory')
+    config.add_route('photos_public', '/photos/public/*directory')
     config.add_route('show', '/show/*imgpath')
     config.add_route('showthumb', '/showthumb/*imgpath')
 

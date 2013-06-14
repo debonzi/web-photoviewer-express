@@ -13,9 +13,9 @@ from models import (
     )
 
 class RootFactory(object):
-    __acl__ = [(Allow, Everyone, 'view'),
-               (Allow, 'viewer', 'view'),
-               (Allow, 'editor', 'edit')]
+    __acl__ = [(Allow, Everyone, 'public'),
+               (Allow, 'private', 'private'),
+               (Allow, 'admin', 'admin')]
 
     def __init__(self, request):
         pass
