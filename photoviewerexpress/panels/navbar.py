@@ -8,8 +8,9 @@ def navbar(context, request):
     _ = request.translate
     homeurl = request.route_url('home')
     logouturl = request.route_url('logout')
-
     directory = request.matchdict['directory']
+
+    route_name = request.matched_route.name
 
     def nav_item(name, url):
         active = request.current_route_url() == url
@@ -21,6 +22,11 @@ def navbar(context, request):
         return item
     nav = []
     path = ""
+    if route_name == "photos_public":
+        path = "public"
+    elif route_name == "photos_private":
+        path = "private"
+
     for d in directory:
         nav.append(nav_item(d,
                             request.route_url('photos', directory=os.path.join(path,d))))
@@ -33,6 +39,6 @@ def navbar(context, request):
     return {
         'logouturl': logouturl,
         'homeurl': homeurl,
-        'nav': nav[1:], #Hide private or public directories.
+        'nav': nav,
         'user_dropdown': user_dropdown
         }
