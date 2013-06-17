@@ -17,5 +17,5 @@ from ..models import (
              layout='welcome')
 def welcome(request):
     if request.user:
-        return HTTPFound(request.route_url('photos'))
+        return HTTPFound(request.route_url('photos', directory=""))
     return {}

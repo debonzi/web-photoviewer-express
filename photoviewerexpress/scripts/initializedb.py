@@ -36,6 +36,7 @@ def main(argv=sys.argv):
     Base.metadata.create_all(engine)
 
     with transaction.manager:
+        group_public = Groups(name="public")
         group_private = Groups(name="private")
         group_admin = Groups(name="admin")
         DBSession.add(group_private)
@@ -77,6 +78,7 @@ def main(argv=sys.argv):
                        password='guest',
                        )
 
+        user_3.groups.append(group_public)
         user_3.emails.append(email_3)
         DBSession.add(user_3)
         DBSession.flush()

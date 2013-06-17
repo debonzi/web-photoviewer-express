@@ -37,19 +37,3 @@ def scan_dir(base, rel_path, prepend="", *args, **kargs):
                 and os.path.splitext(f)[1].lower() in formats
                 )])
 
-# def scan_root(path, include_private=False):
-#     pbdirs, pbfiles = scan_dir(os.path.join(path, "public"))
-#     if include_private:
-#         pvdirs, pvfiles = scan_dir(os.path.join(path, "private"))
-#         return pbdirs + pvdirs, pbfiles + pvfiles
-#     return pbdirs, pbfiles
-
-# def scan_dir(path, *args, **kargs):
-#     formats = (".jpg", ".jpeg", ".git", ".png")
-#     return ([f for f in os.listdir(path)
-#              if os.path.isdir(os.path.join(path,f))],
-#             [f for f in os.listdir(path) if (
-#                 os.path.isfile(os.path.join(path,f))
-#                 and os.path.splitext(f)[1].lower() in formats
-#                 )])
-

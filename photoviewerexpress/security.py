@@ -13,9 +13,13 @@ from models import (
     )
 
 class RootFactory(object):
-    __acl__ = [(Allow, Everyone, 'public'),
+    __acl__ = [(Allow, 'public', 'public'),
+               (Allow, 'private', 'public'),
                (Allow, 'private', 'private'),
-               (Allow, 'admin', 'admin')]
+               (Allow, 'admin', 'public'),
+               (Allow, 'admin', 'private'),
+               (Allow, 'admin', 'admin')
+               ]
 
     def __init__(self, request):
         pass
