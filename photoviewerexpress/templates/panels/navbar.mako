@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="navbar navbar-inverse">
+  <div class="navbar navbar-inverse navbar-fixed-top">
   <!-- <div class="navbar"> -->
     <div class="navbar-inner">
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
