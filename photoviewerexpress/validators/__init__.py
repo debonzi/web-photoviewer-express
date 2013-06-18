@@ -5,7 +5,7 @@ import colander
 from ..models import Emails
 from ..models import Users
 
-_ = translationstring.TranslationStringFactory('collabPortal')
+_ = translationstring.TranslationStringFactory('PhotoViewerExpress')
 
 class DBEmail(colander.Email):
     def __init__(self, msg=None):

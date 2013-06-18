@@ -38,6 +38,10 @@ class Groups(Base):
     def __init__(self, name):
         self.name = name
 
+    @classmethod
+    def by_name(cls, name):
+        return DBSession.query(Groups).filter(Groups.name==name).first()
+
 
 class Emails(Base):
     __tablename__ = 'emails'
@@ -64,7 +68,7 @@ class Users(Base):
     password = Column(Text, nullable=False)
     active = Column(Boolean, unique=False, default=True)
     emails = relationship(Emails, backref="users")
-    groups = relationship(Groups, backref="users")
+    group = relationship(Groups, uselist=False, backref="users")
 
     @classmethod
     def by_id(cls, userid):

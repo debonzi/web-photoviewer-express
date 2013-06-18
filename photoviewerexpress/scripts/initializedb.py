@@ -51,7 +51,7 @@ def main(argv=sys.argv):
                        lastname='Debonzi',
                        password='debonzi123',
                        )
-        user_1.groups.append(group_admin)
+        user_1.group = group_admin
         user_1.emails.append(email_1)
         DBSession.add(user_1)
 
@@ -64,7 +64,7 @@ def main(argv=sys.argv):
                        password='debonzi123',
                        )
 
-        user_2.groups.append(group_private)
+        user_2.group = group_private
         user_2.emails.append(email_2)
         DBSession.add(user_2)
         DBSession.flush()
@@ -78,7 +78,7 @@ def main(argv=sys.argv):
                        password='guest',
                        )
 
-        user_3.groups.append(group_public)
+        user_3.group = group_public
         user_3.emails.append(email_3)
         DBSession.add(user_3)
         DBSession.flush()

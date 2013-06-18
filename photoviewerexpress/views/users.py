@@ -11,7 +11,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
 
 from ..models import DBSession
-from ..models import Emails, Users
+from ..models import Emails, Users, Groups
 
 from ..validators import DBUser
 from ..validators import DBEmail
@@ -43,34 +43,45 @@ class AddUserSchema(colander.Schema):
              colander.String(),
              validator = DBUser(min = 3, max = 50),
              title = '',
-             widget = TextInputWidget(css_class='input-xlarge pull-right', 
+             widget = TextInputWidget(css_class='input-xlarge pull-right',
                                       placeholder = u'Login'),
              name = 'login')
     password = colander.SchemaNode(
              colander.String(),
              validator = colander.Length(min = 5),
-             widget = CheckedPasswordWidget(css_class='input-xlarge pull-right', 
+             widget = CheckedPasswordWidget(css_class='input-xlarge pull-right',
                                             size = 20, placeholder = u'Password',
                                             confirm_placeholder = u'Check Password'),
              name = 'password')
     name = colander.SchemaNode(
              colander.String(),
              validator = colander.Length(min = 1, max = 120),
-             widget = TextInputWidget(css_class='input-xlarge pull-right', 
+             widget = TextInputWidget(css_class='input-xlarge pull-right',
                                       placeholder = u'First Name'),
              name = 'firstname')
     lastname = colander.SchemaNode(
              colander.String(),
              validator = colander.Length(min = 1, max = 120),
-             widget = TextInputWidget(css_class='input-xlarge pull-right', 
+             widget = TextInputWidget(css_class='input-xlarge pull-right',
                                       placeholder = u'Last Name'),
              name = 'lastname')
     email = colander.SchemaNode(
              colander.String(),
              validator = DBEmail(),
-             widget = TextInputWidget(css_class='input-xlarge pull-right', 
+             widget = TextInputWidget(css_class='input-xlarge pull-right',
                                       placeholder = u'Email'),
              name = 'email')
+
+    group_choices = (('public', 'Public'),
+                     ('private', 'Private'),
+                     ('admin', 'Admin'))
+    group = colander.SchemaNode(
+        colander.String(),
+        validator = colander.OneOf([x[0] for x in group_choices]),
+        widget = deform.widget.RadioChoiceWidget(css_class="", values=group_choices,
+                                                 inline=True)
+        )
+
 
 @view_config(route_name='register')
 def register(request):
@@ -86,7 +97,7 @@ def register_tmpl(request):
     search_path = (custom_templates, deform_bootstrap_templates, deform_templates)
     renderer = ZPTRendererFactory(search_path)
 
-    form = Form(schema, buttons = ('register',), formid = 'form-register', 
+    form = Form(schema, buttons = ('register',), formid = 'form-register',
                 renderer = renderer)
 
     if 'register' in request.POST:
@@ -98,9 +109,11 @@ def register_tmpl(request):
             firstname = data['firstname'].strip()
             lastname = data['lastname'].strip()
             email = data['email'].strip()
+            group = data['group'].strip()
             user = Users.by_login(login)
 
             emaildb = Emails(email = email)
+            groupdb = Groups.by_name(group)
             DBSession.add(emaildb)
 
             try:
@@ -110,6 +123,7 @@ def register_tmpl(request):
 
             userdb = Users(login=login, firstname = firstname,
                            lastname=lastname, password = password)
+            userdb.group = groupdb
             userdb.emails.append(emaildb)
 
             DBSession.add(userdb)

@@ -1,7 +1,6 @@
 <style type="text/css">
 .form-horizontal {
-    max-width: 300px;
-    padding: 29px 29px 29px;
+    padding: 5px 5px 5px;
     margin: 0 auto 20px;
     background-color: #e4e4e4;
     border: 1px solid #e5e5e5;
@@ -13,7 +12,7 @@
     box-shadow: 0 1px 2px rgba(0,0,0,.05);
 }
 .form-horizontal input {
-    font-size: 16px;
+    font-size: 15px;
     height: auto;
     margin-bottom: 5px;
     padding: 7px 9px;

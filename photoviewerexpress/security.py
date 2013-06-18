@@ -26,7 +26,7 @@ class RootFactory(object):
 
 def groupfinder(userid, request):
     user = Users.by_id(userid)
-    return [g.name for g in user.groups]
+    return [user.group.name]
 
 def get_user(request):
     userid = authenticated_userid(request)
