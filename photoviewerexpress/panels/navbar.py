@@ -8,7 +8,10 @@ def navbar(context, request):
     _ = request.translate
     homeurl = request.route_url('home')
     logouturl = request.route_url('logout')
-    directory = request.matchdict['directory']
+    try:
+        directory = request.matchdict['directory']
+    except KeyError:
+        directory = ""
 
     route_name = request.matched_route.name
 

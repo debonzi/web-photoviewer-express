@@ -7,8 +7,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link href="${request.static_url('photoviewerexpress:static/css/bootstrap.min.css')}" rel="stylesheet">
-    <link href="${request.static_url('photoviewerexpress:static/css/bootstrap-responsive.min.css')}" rel="stylesheet">
+    <link href="${request.static_url('photoviewerexpress:static/css/bootstrap.min.css')}" rel="stylesheet"/>
+    <link href="${request.static_url('photoviewerexpress:static/css/bootstrap-responsive.min.css')}" rel="stylesheet"/>
     <style type="text/css">
       body {
       padding-top: 20px;

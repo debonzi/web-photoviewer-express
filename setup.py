@@ -18,6 +18,10 @@ requires = [
     'Babel',
     'lingua',
     'PIL',
+    'pyramid-deform',
+    'deform-bootstrap',
+    'deform',
+    'colander'
    ]
 
 setup(name='PhotoViewerExpress',

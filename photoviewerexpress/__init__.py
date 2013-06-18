@@ -48,6 +48,9 @@ def main(global_config, **settings):
 
     ## Static content
     config.add_static_view('static', 'static', cache_max_age=3600)
+    config.add_static_view('deform_static', 'deform:static')
+    config.add_static_view('deform_bootstrap_static', 'deform_bootstrap:static')
+
 
     ## URL Mapping
     config.add_route('home', '/')
@@ -64,6 +67,9 @@ def main(global_config, **settings):
     config.add_route('login', '/login')
     config.add_route('logout', '/logout')
     config.add_route('register', '/register')
+
+    config.add_route('admin', '/admin')
+    config.add_route('admin_register', '/admin/register')
 
     config.scan()
     return config.make_wsgi_app()

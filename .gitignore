@@ -1,3 +1,7 @@
-*.egg-info/
-*.sqlite
+PhotoViewerExpress.egg-info/
+PhotoViewerExpress.sqlite
 *.pyc
+*.mo
+pyenv
+dist
+build
