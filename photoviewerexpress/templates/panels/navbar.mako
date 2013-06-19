@@ -26,6 +26,12 @@
 	      % for item in user_dropdown:
 	      <li><a href="${item['url']}">${item['name']}</a></li>
 	      % endfor
+	      % if admin_dropdown and user_dropdown:
+	      <li class="divider"></li>
+	      % endif
+	      % for item in admin_dropdown:
+	      <li><a href="${item['url']}">${item['name']}</a></li>
+	      % endfor
 	      <li class="divider"></li>
 	      <li><a href="${logouturl}"> ${_(u"Logout")} </a></li>
 	    </ul>

@@ -12,12 +12,7 @@ from ..models import (
     )
 
 
-@view_config(route_name='admin')
-def admin_view(request):
-    return HTTPFound(location = request.route_url('photos', directory=""))
-
-
-@view_config(route_name='admin_register',
+@view_config(route_name='admin',
              renderer='photoviewerexpress:templates/admin.mako',
              permission='admin')
 def admin_register_view(request):

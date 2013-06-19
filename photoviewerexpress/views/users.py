@@ -83,8 +83,11 @@ class AddUserSchema(colander.Schema):
         )
 
 
-@view_config(route_name='register')
+@view_config(route_name='register',
+             permission='admin')
 def register(request):
+    if not 'register' in request.POST:
+        return HTTPFound(location = request.route_url('photos', directory=""))
     return Response(register_tmpl(request))
 
 def register_tmpl(request):
@@ -124,7 +127,7 @@ def register_tmpl(request):
             userdb = Users(login=login, firstname = firstname,
                            lastname=lastname, password = password)
             userdb.group = groupdb
-            userdb.emails.append(emaildb)
+            userdb.emails = emaildb
 
             DBSession.add(userdb)
             try:
@@ -140,3 +143,17 @@ def register_tmpl(request):
     return {'html_form' : form.render()}
 
 
+@view_config(route_name='user_delete',
+             permission='admin')
+def edit_user(request):
+    username = request.matchdict['username'].strip()
+    user = Users.by_login(username)
+    DBSession.delete(user.emails)
+    DBSession.delete(user)
+    DBSession.flush()
+    return HTTPFound(location = request.route_url('admin', directory=""))
+
+@view_config(route_name='user_edit',
+             permission='admin')
+def delete_user(request):
+    return HTTPFound(location = request.route_url('photos', directory=""))

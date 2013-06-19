@@ -1,6 +1,10 @@
 import os
 from pyramid_layout.panel import panel_config
 
+from pyramid.security import (
+    has_permission,
+    )
+
 @panel_config(name='navbar',
               renderer='panels/navbar.mako'
               )
@@ -36,12 +40,16 @@ def navbar(context, request):
         path = os.path.join(path, d)
 
     user_dropdown = [
-        nav_item(_(u"Settings"), '#'),
         ]
+
+    admin_dropdown = []
+    if has_permission('admin', context, request):
+        admin_dropdown.append(nav_item(_(u"Admin"), '/admin'))
 
     return {
         'logouturl': logouturl,
         'homeurl': homeurl,
         'nav': nav,
-        'user_dropdown': user_dropdown
+        'user_dropdown': user_dropdown,
+        'admin_dropdown': admin_dropdown
         }

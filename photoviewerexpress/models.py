@@ -67,7 +67,7 @@ class Users(Base):
     lastname = Column(Text, nullable=False)
     password = Column(Text, nullable=False)
     active = Column(Boolean, unique=False, default=True)
-    emails = relationship(Emails, backref="users")
+    emails = relationship(Emails, uselist=False, backref="users")
     group = relationship(Groups, uselist=False, backref="users")
 
     @classmethod
@@ -77,6 +77,10 @@ class Users(Base):
     @classmethod
     def by_login(cls, login):
         return DBSession.query(Users).filter(Users.login==login).first()
+
+    @classmethod
+    def all(cls):
+        return DBSession.query(Users).all()
 
     def __init__(self, login, firstname, lastname, password):
         self.login = login
