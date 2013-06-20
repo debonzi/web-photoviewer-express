@@ -13,6 +13,4 @@ from ..models import Users
 @panel_config(name='users_list',
               renderer='panels/users_list.mako')
 def users_list(context, request):
-    for user in Users.all():
-        print "User", user
     return {'users': Users.all()}

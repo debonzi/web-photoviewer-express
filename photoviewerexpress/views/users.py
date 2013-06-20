@@ -83,13 +83,6 @@ class AddUserSchema(colander.Schema):
         )
 
 
-@view_config(route_name='register',
-             permission='admin')
-def register(request):
-    if not 'register' in request.POST:
-        return HTTPFound(location = request.route_url('photos', directory=""))
-    return Response(register_tmpl(request))
-
 def register_tmpl(request):
     schema = AddUserSchema()
     _inline_translate(schema, request)
@@ -100,8 +93,10 @@ def register_tmpl(request):
     search_path = (custom_templates, deform_bootstrap_templates, deform_templates)
     renderer = ZPTRendererFactory(search_path)
 
-    form = Form(schema, buttons = ('register',), formid = 'form-register',
-                renderer = renderer)
+    def get_RForm():
+        return Form(schema, buttons = ('register',), formid = 'form-register',
+                    renderer = renderer)
+    form = get_RForm()
 
     if 'register' in request.POST:
         controls = request.POST.items()
@@ -117,7 +112,6 @@ def register_tmpl(request):
 
             emaildb = Emails(email = email)
             groupdb = Groups.by_name(group)
-            print "Group", groupdb
             if not groupdb:
                 return {'html_code', form.render()}
             DBSession.add(emaildb)
@@ -142,7 +136,8 @@ def register_tmpl(request):
 
         except deform.ValidationFailure, e:
             return {'html_form' : e.render()}
-        return {'html_form' : form.render()}
+        # Success
+        return {'html_form' : get_RForm().render()}
     return {'html_form' : form.render()}
 
 
