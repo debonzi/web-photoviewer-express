@@ -117,6 +117,9 @@ def register_tmpl(request):
 
             emaildb = Emails(email = email)
             groupdb = Groups.by_name(group)
+            print "Group", groupdb
+            if not groupdb:
+                return {'html_code', form.render()}
             DBSession.add(emaildb)
 
             try:

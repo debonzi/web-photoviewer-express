@@ -30,9 +30,7 @@ Base = declarative_base()
 
 class Groups(Base):
     __tablename__ = 'groups'
-    id = Column(Integer, Sequence('group_seq_id'),
-                primary_key=True)
-    user_id = Column(Integer, ForeignKey('users.id'))
+    id = Column(Integer, primary_key=True)
     name = Column(Text, unique=True)
     
     def __init__(self, name):
@@ -45,9 +43,7 @@ class Groups(Base):
 
 class Emails(Base):
     __tablename__ = 'emails'
-    id = Column(Integer, Sequence('emails_seq_id'),
-                primary_key=True)
-    user_id = Column(Integer, ForeignKey('users.id'))
+    id = Column(Integer, primary_key=True)
     email = Column(Text, unique=True, nullable=False)
 
     def __init__(self, email):
@@ -68,7 +64,9 @@ class Users(Base):
     password = Column(Text, nullable=False)
     active = Column(Boolean, unique=False, default=True)
     emails = relationship(Emails, uselist=False, backref="users")
+    email_id = Column(Integer, ForeignKey('emails.id'))
     group = relationship(Groups, uselist=False, backref="users")
+    group_id = Column(Integer, ForeignKey('groups.id'))
 
     @classmethod
     def by_id(cls, userid):
