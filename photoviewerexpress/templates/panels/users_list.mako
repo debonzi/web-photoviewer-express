@@ -17,11 +17,7 @@
 	  <td>${user.emails.email}</td>
 	  <td>${user.group.name}</td>
 	  <td>
-	    <a href="/admin/edit/${user.login}" data-toggle="tooltip" title="${_(u"Edit")}">
-	      <i class="icon-edit"></i>
-	    </a>
-	    <!-- <a href="/admin/delete/${user.login}" data-toggle="tooltip" title="${_(u"Delete")}"> -->
-	    <a href="#delete_confirm" role="button" data-toggle="modal" data-toggle="tooltip" title="${_(u"Delete")}">
+	    <a href="#delete_${user.login}" role="button" data-toggle="modal" data-toggle="tooltip" title="${_(u"Delete")}">
 	      <i class="icon-trash"></i>
 	    </a>
 	  </td>
@@ -30,7 +26,8 @@
     </thead>
   </table>
   <!-- Confirm -->
-  <div id="delete_confirm" class="modal hide fake">
+  % for user in users:
+  <div id="delete_${user.login}" class="modal hide fake">
     <div class="modal-header">
     </div>
     <div class="modal-body">
@@ -41,5 +38,5 @@
       <a class="btn btn-primary" href="/admin/delete/${user.login}">${_(u"Delete")}</a>
     </div>    
   </div>
-
+  % endfor
 </div>

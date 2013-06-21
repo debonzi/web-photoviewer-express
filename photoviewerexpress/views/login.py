@@ -16,9 +16,8 @@ from ..models import Emails, Users
 def login(request):
 
     login_url = request.route_url('login')
-    register_url = request.route_url('register')
     origin_url = request.url
-    if (origin_url == login_url or origin_url == register_url):
+    if (origin_url == login_url):
         origin_url = request.route_url('home')
 
     if 'form.submitted' in request.params:

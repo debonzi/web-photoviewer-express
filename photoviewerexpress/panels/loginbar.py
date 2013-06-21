@@ -8,8 +8,6 @@ from pyramid.httpexceptions import (
     )
 from pyramid_layout.panel import panel_config
 
-from ..views.users import register_tmpl
-
 @panel_config(name='loginbar',
               renderer='panels/loginbar.mako'
               )

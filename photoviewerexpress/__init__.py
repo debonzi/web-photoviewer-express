@@ -69,7 +69,6 @@ def main(global_config, **settings):
 
     config.add_route('admin', '/admin')
     config.add_route('user_delete', '/admin/delete/{username}')
-    config.add_route('user_edit', '/admin/edit/{username}')
 
     config.scan()
     return config.make_wsgi_app()
