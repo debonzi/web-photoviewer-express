@@ -54,6 +54,8 @@ def main(global_config, **settings):
 
     ## URL Mapping
     config.add_route('home', '/')
+    config.add_route('favicon', '/favicon.ico')
+
     config.add_route('welcome', '/welcome')
     config.add_route('photos_base', '/photos')
     config.add_route('private_root', '/photos/private')

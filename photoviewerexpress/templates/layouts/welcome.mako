@@ -23,7 +23,8 @@
       <div class="row">
 	<div class="span12">
 	  <div class="row">
-	    <div class="span6"><h1>Logo</h1></div>
+	    <div class="span6">
+	      <img src="${request.static_url('photoviewerexpress:static/pve_logo.png')}" alt="PhotoViewer"></div>
 	    <div class="span6"><div class="pull-right">${panel('loginbar')}</div></div>
 	  </div>
 	</div>
