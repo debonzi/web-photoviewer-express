@@ -43,14 +43,14 @@ def main(argv=sys.argv):
         DBSession.add(group_private)
         DBSession.add(group_admin)
 
-        email_1 = Emails(email="debonzi@gmail.com")
+        email_1 = Emails(email="admin@photoviewer.com")
         DBSession.add(email_1)
         DBSession.flush()
 
-        user_1 = Users(login='debonzi',
-                       firstname='Daniel Henrique',
-                       lastname='Debonzi',
-                       password='debonzi123',
+        user_1 = Users(login='admin',
+                       firstname='Photo Viewer',
+                       lastname='Admin',
+                       password='admin',
                        )
         user_1.group = group_admin
         user_1.emails = email_1
@@ -59,34 +59,3 @@ def main(argv=sys.argv):
         email_2 = Emails(email="daniel@debonzi.net")
         DBSession.add(email_2)
         DBSession.flush()
-        user_2 = Users(login='daniel',
-                       firstname='Daniel Henrique',
-                       lastname='Debonzi',
-                       password='debonzi123',
-                       )
-
-        user_2.group = group_private
-        user_2.emails = email_2
-        DBSession.add(user_2)
-        DBSession.flush()
-
-        email_3 = Emails(email="guest@debonzi.net")
-        DBSession.add(email_3)
-        DBSession.flush()
-        user_3 = Users(login='guest',
-                       firstname='Photo Viewer',
-                       lastname='Guest',
-                       password='guest',
-                       )
-
-        user_3.group = group_public
-        user_3.emails = email_3
-        DBSession.add(user_3)
-        DBSession.flush()
-        
-        # Exemplo de uso
-        # emails = user_2.emails # retorna uma lista de Emails
-        # print emails
-        # for e in emails:
-        #     u = e.users #backref
-        #     print u.lastname

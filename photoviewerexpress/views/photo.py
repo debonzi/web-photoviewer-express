@@ -23,9 +23,6 @@ from ..utils.utils import (
     get_thumb_parms
     )
 
-# Find a better place for this
-PHOTOS_PATH = "/home/debonzi/Pictures"
-
 @view_config(route_name='photos_base')
 @view_config(route_name='private_root')
 @view_config(route_name='public_root')
@@ -72,7 +69,8 @@ def photos_view(request):
     if not os.path.basename(path):
         __scan = scan_root
 
-    dirs, photos = __scan(PHOTOS_PATH, path,
+    photos_path = request.registry.settings['photos_path']
+    dirs, photos = __scan(photos_path, path,
                           include_private=has_permission('private', request.context, request))
 
     [dirs_urls.append(files_url(os.path.basename(d),
@@ -104,10 +102,13 @@ def show_image_view(request):
 
     if route_name == "show":
         __get_parms = get_image_parms
+        res = request.registry.settings['show_resolution']
     elif route_name == "showthumb":
         __get_parms = get_thumb_parms
+        res = request.registry.settings['thumb_resolution']
 
-    fsave, fformat = __get_parms(os.path.join(PHOTOS_PATH, img_path))
+    photos_path = request.registry.settings['photos_path']
+    fsave, fformat = __get_parms(os.path.join(photos_path, img_path), res)
     response = request.response
     response.content_type = 'image/%s'%fformat
     fsave(response.body_file, format=fformat)

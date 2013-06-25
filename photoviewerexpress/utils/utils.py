@@ -1,18 +1,18 @@
 import os
 import Image
 
-def get_image_parms(path):
+def get_image_parms(path, res=800):
     img = Image.open(path)
     pic_format = img.format.lower()
     w, h = img.size
-    ratio = 800.0/max(w, h)
+    ratio = float(res)/max(w, h)
     if ratio < 1:
         img = img.resize((int(w*ratio), int(h*ratio)), Image.ANTIALIAS)
 
     return img.save, pic_format
 
-def get_thumb_parms(path):
-    size = 200, 200
+def get_thumb_parms(path, res):
+    size = int(res), int(res)
     img = Image.open(path)
     img.thumbnail(size, Image.ANTIALIAS)
     return img.save, img.format.lower()
