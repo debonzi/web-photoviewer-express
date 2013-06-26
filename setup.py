@@ -14,7 +14,15 @@ requires = [
     'pyramid_debugtoolbar',
     'zope.sqlalchemy',
     'waitress',
-    ]
+    'pyramid_layout',
+    'Babel',
+    'lingua',
+    'PIL',
+    'pyramid-deform',
+    'deform-bootstrap',
+    'deform',
+    'colander'
+   ]
 
 setup(name='PhotoViewerExpress',
       version='0.0',
@@ -41,4 +49,9 @@ setup(name='PhotoViewerExpress',
       [console_scripts]
       initialize_PhotoViewerExpress_db = photoviewerexpress.scripts.initializedb:main
       """,
+      message_extractors = {'photoviewerexpress': [
+            ('**.py', 'python', None),
+            ('templates/**.html', 'mako', None),
+            ('templates/**.mako', 'mako', None),
+            ('static/**', 'ignore', None)]},
       )

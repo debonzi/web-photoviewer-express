@@ -11,8 +11,10 @@ from pyramid.paster import (
 
 from ..models import (
     DBSession,
-    MyModel,
     Base,
+    Groups,
+    Emails,
+    Users,
     )
 
 
@@ -32,6 +34,28 @@ def main(argv=sys.argv):
     engine = engine_from_config(settings, 'sqlalchemy.')
     DBSession.configure(bind=engine)
     Base.metadata.create_all(engine)
+
     with transaction.manager:
-        model = MyModel(name='one', value=1)
-        DBSession.add(model)
+        group_public = Groups(name="public")
+        group_private = Groups(name="private")
+        group_admin = Groups(name="admin")
+        DBSession.add(group_public)
+        DBSession.add(group_private)
+        DBSession.add(group_admin)
+
+        email_1 = Emails(email="admin@photoviewer.com")
+        DBSession.add(email_1)
+        DBSession.flush()
+
+        user_1 = Users(login='admin',
+                       firstname='Photo Viewer',
+                       lastname='Admin',
+                       password='admin',
+                       )
+        user_1.group = group_admin
+        user_1.emails = email_1
+        DBSession.add(user_1)
+
+        email_2 = Emails(email="daniel@debonzi.net")
+        DBSession.add(email_2)
+        DBSession.flush()

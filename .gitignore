@@ -1,3 +1,7 @@
-collabPortal.egg-info/
-collabPortal.sqlite
+PhotoViewerExpress.egg-info/
+PhotoViewerExpress.sqlite
 *.pyc
+*.mo
+pyenv
+dist
+build
