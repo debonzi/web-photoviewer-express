@@ -17,7 +17,7 @@ To do it, I made the following assumptions:
  * I want to keep them in the original size and format (They are there
    because it is a safe place to keep them.)
  * I dont want to generate and store in disk thumbnails and view size files.
- * I dont want to make everyone see my pictures.
+ * I dont want everyone see my pictures.
  * I want some people to see some of my pictures.
  * I want some other people to be able to see all my pictures.
 
@@ -31,7 +31,7 @@ Result:
  * You can see all folders and pictures inside those folder as thumbnails.
  * You can click on thumbnails to see the picture and a pre configured size.
  * All thumbnails and view size pictures are generated in run time, what is 
-   more cpu comsuming but I dont need to worry about thumbnail and view size
+   more cpu consuming but I dont need to worry about thumbnail and view size
    images storage and sincronization with possible file modifications. What
    you have stored is what you are gonna get.
 
