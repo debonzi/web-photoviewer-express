@@ -72,5 +72,9 @@ def main(global_config, **settings):
     config.add_route('admin', '/admin')
     config.add_route('user_delete', '/admin/delete/{username}')
 
+    config.add_route('sharedURLs', '/shared')
+    config.add_route('delete_sharedURL', '/shared/delete/{token}')
+    config.add_route('sharedURL', '/shared/{token}')
+
     config.scan()
     return config.make_wsgi_app()

@@ -15,6 +15,7 @@ from ..models import (
     Groups,
     Emails,
     Users,
+    SharedURL,
     )
 
 
@@ -56,6 +57,7 @@ def main(argv=sys.argv):
         user_1.emails = email_1
         DBSession.add(user_1)
 
-        email_2 = Emails(email="daniel@debonzi.net")
-        DBSession.add(email_2)
+        shared = SharedURL("public/pub2013")
+        DBSession.add(shared)
+
         DBSession.flush()

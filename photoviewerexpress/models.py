@@ -111,3 +111,20 @@ class Users(Base):
         return self.password[40:] == hashed_pass.hexdigest()
 
 
+class SharedURL(Base):
+    __tablename__ = 'shared_url'
+    id = Column(Integer, primary_key=True)
+    path = Column(Text, nullable=False)
+    token = Column(Text, unique=True, nullable=False)
+
+    def __init__(self, path):
+        self.path = path
+        self.token = os.urandom(64).encode('hex')
+
+    @classmethod
+    def by_token(cls, token):
+        return DBSession.query(SharedURL).filter(SharedURL.token==token).first()
+
+    @classmethod
+    def all(cls):
+        return DBSession.query(SharedURL).all()
